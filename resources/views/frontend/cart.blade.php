@@ -62,9 +62,12 @@
     </table>
 </div>
 {{ $carts->links() }}
+
 {{-- Checkout --}}
+
 <div>
     <h2>Billing option</h2>
+    <h2>Billing option2</h2>
     
     <a href="" class="btn btn-success w-100">Checkout</a>
 </div>
