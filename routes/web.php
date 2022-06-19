@@ -19,14 +19,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-    Route::get('/', [frontendController::class, 'frontend']);
-    Route::get('/cart', [cartController::class, 'cart']);
-    Route::get('/add-cart/{id}', [cartController::class, 'addToCart']);
-    Route::get('/cart-remove/{id}', [cartController::class, 'cartRemove']);
+Route::get('/', [frontendController::class, 'frontend']);
+Route::get('/cart', [cartController::class, 'cart']);
+Route::get('/add-cart/{id}', [cartController::class, 'addToCart']);
+Route::get('/cart-remove/{id}', [cartController::class, 'cartRemove']);
+Route::post('/place-order', [CheckoutController::class, 'placeorder']);
 
-    Auth::routes();
+Auth::routes();
 
-    Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/index', [PostController::class, 'index']);
     Route::get('/home', [PostController::class, 'index']);
     Route::get('/create', function () {
@@ -34,8 +35,12 @@ use Illuminate\Support\Facades\Route;
     });
 
     //Checkout Route
-    Route::get('/checkout',[CheckoutController::class,'index']);
-    Route::post('/place-order',[CheckoutController::class,'placeorder']);
+    Route::get('/checkout', [CheckoutController::class, 'index']);
+
+    // sales
+    Route::get('/sales', [HomeController::class, 'sales']);
+    Route::get('/salesDelete/{id}', [CheckoutController::class, 'orderDelete']);
+    Route::get('/salesDetails/{id}', [CheckoutController::class, 'saleDetails']);
 
     Route::post('/post', [PostController::class, 'store']);
     Route::get('/delete/{id}', [PostController::class, 'destroy']);

@@ -11,6 +11,7 @@ class cartController extends Controller
     {
         $ip_address = $_SERVER['REMOTE_ADDR'];
         $carts = Cart::where('ip_address', $ip_address)->orderBy('id', 'desc')->paginate(10);
+
         return view('frontend.cart', compact('carts'));
     }
     public function addToCart($id)

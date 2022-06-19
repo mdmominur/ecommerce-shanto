@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,5 +28,11 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function sales()
+    {
+        $sales = Sale::orderBy('id', 'desc')->paginate(10);
+        return view('admin.sales.view', compact('sales'));
     }
 }
