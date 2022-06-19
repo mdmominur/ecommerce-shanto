@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('content')
-<div class="container my-5 vh-100">
+<div class="container my-5" style="min-height: 100vh">
 
     <div class="col-md-6 mx-auto my-0">
         @if (session('dangerMsg'))
