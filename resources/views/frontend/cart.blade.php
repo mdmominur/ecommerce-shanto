@@ -64,14 +64,9 @@
 {{ $carts->links() }}
 
 {{-- Checkout --}}
-
-<div>
-    <h2>Billing option</h2>
-    <h2>Billing option2</h2>
+<div class="col-md-6 mx-auto my-0">
     
-    <a href="" class="btn btn-success w-100">Checkout</a>
+    <a href="{{ url('checkout') }}" class="btn btn-success w-100">Process To Checkout</a>
 </div>
-
-
 </div>
 @endsection

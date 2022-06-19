@@ -49,11 +49,9 @@
                        
                        <td>
                         <a href="/edit/{{ $post->id }}" class="btn btn-info">Edit</a>
-                           <form action="/delete/{{ $post->id }}" method="post">
-                            <button class="btn btn-danger" onclick="return confirm('Are you sure?');" type="submit">Delete</button>
-                            @csrf
-                            @method('delete')
-                        </form>
+                           
+                        <a href="/delete/{{ $post->id }}" class="btn btn-danger" onclick="return confirm('Are you sure?');" type="submit">Delete</a>
+                        @method('delete')
                        </td>
 
                    </tr>

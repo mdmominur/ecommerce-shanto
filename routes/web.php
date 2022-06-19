@@ -4,6 +4,7 @@ use App\Http\Controllers\cartController;
 use App\Http\Controllers\frontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,24 +19,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [frontendController::class, 'frontend']);
-Route::get('/cart', [cartController::class, 'cart']);
-Route::get('/add-cart/{id}', [cartController::class, 'addToCart']);
-Route::get('/cart-remove/{id}', [cartController::class, 'cartRemove']);
+    Route::get('/', [frontendController::class, 'frontend']);
+    Route::get('/cart', [cartController::class, 'cart']);
+    Route::get('/add-cart/{id}', [cartController::class, 'addToCart']);
+    Route::get('/cart-remove/{id}', [cartController::class, 'cartRemove']);
 
-Auth::routes();
+    Auth::routes();
 
-
-Route::middleware('auth')->group(function () {
+    Route::middleware('auth')->group(function () {
     Route::get('/index', [PostController::class, 'index']);
     Route::get('/home', [PostController::class, 'index']);
-
     Route::get('/create', function () {
         return view('admin.products.add');
     });
 
+    //Checkout Route
+    Route::get('/checkout',[CheckoutController::class,'index']);
+    Route::post('/place-order',[CheckoutController::class,'placeorder']);
+
     Route::post('/post', [PostController::class, 'store']);
-    Route::delete('/delete/{id}', [PostController::class, 'destroy']);
+    Route::get('/delete/{id}', [PostController::class, 'destroy']);
     Route::get('/edit/{id}', [PostController::class, 'edit']);
 
     Route::delete('/deleteimage/{id}', [PostController::class, 'deleteimage']);
